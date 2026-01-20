@@ -1,0 +1,41 @@
+<h2>Student List</h2>
+
+<a href="{% url 'add_student' %}">➕ Add Student</a>
+
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>#</th> <!-- Serial Number -->
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Course</th>
+            <th>Skills</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{ forloop.counter }}</td> <!-- This gives the serial number -->
+            <td>{{ student.name }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.phone }}</td>
+            <td>{{ student.course }}</td>
+            <td>{{ student.skills }}</td>
+            <td>
+                <a href="{% url 'update_student' student.id %}">✏️ Edit</a>
+                <a href="{% url 'delete_student' student.id %}">❌ Delete</a>
+                
+            </td>
+        </tr>
+       
+        {% empty %}
+   <li>No records found</li>
+        {% endfor %}
+
+    </tbody>
+</table>
